@@ -1,0 +1,32 @@
+import matplotlib.pyplot as plt
+import numpy as np
+x1 = 2
+y1 = 2
+x2 = 3
+y3 = 3
+
+q1 = 1
+q2 = -1
+x0 = 0
+y0 = 0
+k = 1
+i = 0
+j = 0
+
+xlist = np.arange(-5, 5, 0.1)
+ylist = np.arange(-5, 5, 0.1)
+E_x = np.zeros((100,100))
+E_y = np.zeros((100,100))
+
+for x in xlist:
+  j = 0
+  for y in ylist:
+    rcube1 = np.sqrt(((x-x0)*(x-x0))+((y-y0)*(y-y0)))**3.0
+    rcube2 = np.sqrt(((x-x1)*(x-x1))+((y-y1)*(y-y1)))**3.0
+    E_x[j,i] = (k*q1*(x-x0) / rcube1) + (k*q2*(x-x1)/ rcube2)
+    E_y[j,i] = (k*q1*(y-y0) / rcube1) + (k*q2*(y-y1)/ rcube2)
+    j = j + 1
+  i = i + 1
+
+
+plt.streamplot(xlist, ylist,E_x, E_y)
